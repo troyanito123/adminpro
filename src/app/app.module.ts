@@ -21,8 +21,8 @@ import { RegisterComponent } from './login/register.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    PagesModule
+    PagesModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
