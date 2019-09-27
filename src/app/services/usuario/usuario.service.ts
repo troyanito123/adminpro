@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators'
 import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 const URL = environment.url;
 
@@ -15,7 +16,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor( private http: HttpClient ) {
+  constructor( private http: HttpClient, private router: Router ) {
     this.cargarStorage();
   }
 
@@ -40,6 +41,15 @@ export class UsuarioService {
       this.token = '';
       this.usuario = null;
     }
+  }
+
+  logout(){
+    this.usuario = null;
+    this.token = '';
+    localStorage.removeItem('token');
+    localStorage.removeItem('usuario');
+    localStorage.removeItem('id');
+    this.router.navigate(['/login']);
   }
 
   loginGoogle( token: string ){
