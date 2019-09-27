@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
     init_plugins();
     this.googleInit();
     this.email = localStorage.getItem('email') || '';
-    console.log(this.email);
     
     if(this.email.length > 1){
       this.recuerdame = true;
@@ -48,7 +47,8 @@ export class LoginComponent implements OnInit {
     this.auth2.attachClickHandler( element, {}, googleUser =>{
       // let profile = googleUser.getBasicProfile();
       let token = googleUser.getAuthResponse().id_token;
-      console.log(token);
+
+      this._usuarioService.loginGoogle(token).subscribe( () => window.location.href = '#/dashboard' );
       
     });
   }
