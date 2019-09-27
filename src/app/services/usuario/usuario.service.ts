@@ -14,6 +14,11 @@ export class UsuarioService {
 
   constructor( private http: HttpClient ) { }
 
+  login(usuario: Usuario, recordar: boolean = false){
+    let url = `${ URL }/login`;
+    return this.http.post(url, usuario);
+  }
+
   crearUsuario(usuario: Usuario){
     let url = `${ URL }/usuario`;
 
