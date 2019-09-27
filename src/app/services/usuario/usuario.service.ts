@@ -15,7 +15,9 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor( private http: HttpClient ) { }
+  constructor( private http: HttpClient ) {
+    this.cargarStorage();
+  }
 
   guardarStorage(id: string, token: string, usuario: Usuario){
     localStorage.setItem('id', id);
@@ -24,6 +26,20 @@ export class UsuarioService {
 
     this.usuario = usuario;
     this.token = token;
+  }
+
+  estaLogueado(){
+    return ( this.token.length > 5 ) ? true : false;
+  }
+
+  cargarStorage(){
+    if(localStorage.getItem('token')){
+      this.token = localStorage.getItem('token');
+      this.usuario = JSON.parse(localStorage.getItem('usuario'));
+    }else{
+      this.token = '';
+      this.usuario = null;
+    }
   }
 
   loginGoogle( token: string ){
