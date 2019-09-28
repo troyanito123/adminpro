@@ -9,6 +9,9 @@ import { FormsModule } from '@angular/forms'
 // Graficas
 import { ChartsModule } from 'ng2-charts';
 
+// Pipes
+import { PipesModule } from '../pipes/pipes.module';
+
 import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProgressComponent } from './progress/progress.component';
@@ -46,7 +49,8 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     SharedModule,
     PagesRoutingModule,
     FormsModule,
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ]
 })
 export class PagesModule { }
