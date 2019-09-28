@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 
 import { PagesRoutingModule } from './pages.routes';
 
@@ -28,6 +29,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 
 
+
 @NgModule({
   declarations: [
     PagesComponent,
@@ -48,6 +50,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
     Graficas1Component
   ],
   imports: [
+    CommonModule,
     SharedModule,
     PagesRoutingModule,
     FormsModule,

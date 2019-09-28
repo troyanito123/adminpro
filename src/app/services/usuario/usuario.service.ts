@@ -5,6 +5,7 @@ import { environment } from '../../../environments/environment';
 import { map } from 'rxjs/operators'
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 const URL = environment.url;
 
@@ -16,7 +17,7 @@ export class UsuarioService {
   usuario: Usuario;
   token: string;
 
-  constructor( private http: HttpClient, private router: Router ) {
+  constructor( private http: HttpClient, private router: Router, private _subirArchivoService: SubirArchivoService) {
     this.cargarStorage();
   }
 
@@ -110,5 +111,23 @@ export class UsuarioService {
         return true;
       })
     );
+  }
+
+  cambiarImagen(archivo: File, id: string){
+    this._subirArchivoService.subirArchivo(archivo, 'usuarios', id)
+      .then((resp: any) =>{
+        this.usuario.img = resp.usuario.img;
+        Swal.fire({
+          type: 'success',
+          title: 'Imagen actualizada',
+          text: this.usuario.nombre
+        });
+        this.guardarStorage(id, this.token, this.usuario);
+        
+      })
+      .catch(err =>{
+        console.log(err);
+        
+      })
   }
 }
