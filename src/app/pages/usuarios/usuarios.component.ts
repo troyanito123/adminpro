@@ -86,9 +86,11 @@ export class UsuariosComponent implements OnInit {
                               this.cargarUsuarios();
                             });
       }
-    })
+    });
+  }
 
-    
+  guardarUsuario( usuario: Usuario ){
+    this._usuarioService.actualizarUsuario(usuario).subscribe();
   }
 
   
