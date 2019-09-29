@@ -140,4 +140,18 @@ export class UsuarioService {
     let url = `${ URL }/busqueda/coleccion/usuarios/${ termino }`;
     return this.http.get(url).pipe( map( (resp: any) => resp.usuarios ));
   }
+
+  borrarUsuario(id: string){
+    let url = `${ URL }/usuario/${ id }?token=${ this.token }`;
+    return this.http.delete(url).pipe(
+      map( resp =>{
+        Swal.fire({
+          type: 'success',
+          title: 'Usuario borrado',
+          text: 'El usuario ha sido eliminado correctamente'
+        });
+        return true;
+      })
+    );
+  }
 }
