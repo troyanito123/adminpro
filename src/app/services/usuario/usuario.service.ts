@@ -130,4 +130,14 @@ export class UsuarioService {
         
       })
   }
+
+  cargarUsuarios(desde: number = 0){
+    let url = `${ URL }/usuario?desde=${ desde }`;
+    return this.http.get(url);
+  }
+
+  buscarUsuarios(termino: string){
+    let url = `${ URL }/busqueda/coleccion/usuarios/${ termino }`;
+    return this.http.get(url).pipe( map( (resp: any) => resp.usuarios ));
+  }
 }
