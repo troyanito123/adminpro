@@ -27,6 +27,7 @@ import { GraficoDonaComponent } from '../components/grafico-dona/grafico-dona.co
 import { PromesasComponent } from './promesas/promesas.component';
 import { RxjsComponent } from './rxjs/rxjs.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
+import { HospitalesComponent } from './hospitales/hospitales.component';
 
 
 
@@ -45,7 +46,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     RxjsComponent,
     ProfileComponent,
     UsuariosComponent,
-    ModalUploadComponent
+    ModalUploadComponent,
+    HospitalesComponent
   ],
   exports: [
     PagesComponent,
