@@ -19,6 +19,7 @@ import { ProgressComponent } from './progress/progress.component';
 import { Graficas1Component } from './graficas1/graficas1.component';
 import { AccountSettingsComponent } from './account-settings/account-settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 // temporal
 import { IncrementadorComponent } from '../components/incrementador/incrementador.component';
@@ -43,7 +44,8 @@ import { UsuariosComponent } from './usuarios/usuarios.component';
     PromesasComponent,
     RxjsComponent,
     ProfileComponent,
-    UsuariosComponent
+    UsuariosComponent,
+    ModalUploadComponent
   ],
   exports: [
     PagesComponent,
