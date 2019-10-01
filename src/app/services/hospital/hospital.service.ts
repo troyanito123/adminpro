@@ -26,7 +26,7 @@ export class HospitalService {
 
   obtenerHospital(id: string){
     let url = `${ URL }/hospital/${ id }`;
-    return this.http.get(url);
+    return this.http.get(url).pipe( map ( (resp: any) => resp.hospital));
   }
 
   borrarHospital(id: string){

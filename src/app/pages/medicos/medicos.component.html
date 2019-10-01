@@ -1,1 +1,71 @@
-<p>medicos works!</p>
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <input #input (keyup)="buscarMedicos(input.value)" type="text" class="form-control" placeholder="Buscar medico ...">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row animated fadeIn">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                
+                <div align="right">
+                    <button [routerLink]="['/medico', 'nuevo']" class="btn btn-primary btn-large text-right">
+                        <i class="fa fa-plus"></i>
+                        Crear Médico
+                    </button>
+                </div>
+
+                <h3 class="card-title">Médicos registrados ( <small> {{ _medicosService.totalMedicos }} </small> ) </h3>
+
+                <div class="card-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Médico</th>
+                                <th>Hospital</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let medico of medicos">
+                                <td>
+                                    <img [src]="medico.img | imagen: 'medicos'" class="w50 img-circle" alt="medico.nombre">
+                                </td>
+                                <td>{{ medico.nombre }}</td>
+                                
+                                <td *ngIf="medico.hospital['nombre']">
+                                    {{ medico.hospital['nombre']}}
+                                </td>
+                                <td>
+                                    <button [routerLink]="['/medico', medico._id]" class="btn btn-primary mr-2">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button (click)="borrarMedico( medico )" class="btn btn-danger">
+                                        <i class="fa fa-trash-o"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="card-footer">
+
+                        <button (click)="cambiarDesde(-5)" class="btn btn-secondary mr-2" [disabled]="(desde <= 0)">
+                            Anteriores
+                        </button>
+        
+                        <button (click)="cambiarDesde(5)" class="btn btn-secondary" [disabled]="(desde + 5 >= _medicosService.totalMedicos)">
+                            Siguientes
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
