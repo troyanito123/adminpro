@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Usuario } from '../../models/usuario.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { map } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
 import Swal from 'sweetalert2'
 import { Router } from '@angular/router';
 import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
+import { Observable } from 'rxjs';
 
 const URL = environment.url;
 
@@ -83,6 +84,10 @@ export class UsuarioService {
       map( (resp: any) =>{
         this.guardarStorage(resp.id, resp.token, resp.usuario, resp.menu)
         return true;
+      }),
+      catchError( err =>{
+        Swal.fire('Error en el login', err.error.mensaje, 'error');
+        throw err
       })
     );
   }
@@ -98,6 +103,10 @@ export class UsuarioService {
           text: 'Bienvenido ' + usuario.nombre,
         });
         return resp.usuario;
+      }),
+      catchError( err =>{
+        Swal.fire(err.error.mensaje, err.error.errors.message, 'error');
+        throw err
       })
     );
   }
@@ -119,6 +128,10 @@ export class UsuarioService {
           text: usuario.nombre
         });
         return true;
+      }),
+      catchError( err =>{
+        Swal.fire(err.error.mensaje, err.error.errors.message, 'error');
+        throw err
       })
     );
   }
